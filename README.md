@@ -53,6 +53,34 @@ All models are evaluated using:
 
 ---
 
+## 📈 Results
+
+### Model Comparison
+
+| Model | Train Acc | Val Acc | Train Loss | Val Loss |
+|---|---|---|---|---|
+| LSTM | 47.61% | 42.01% | 1.5309 | 1.6175 |
+| BiLSTM | 83.64% | 71.18% | 0.4913 | 0.8781 |
+| **CNN + BiLSTM** | **98.44%** | **84.72%** | **0.1078** | **0.5978** |
+
+### LSTM — Per-Class Report (Val Accuracy: 42%)
+
+| Emotion | Precision | Recall | F1-Score |
+|---|---|---|---|
+| Neutral | 0.69 | 0.64 | 0.67 |
+| Calm | 0.33 | 0.77 | 0.47 |
+| Happy | 0.48 | 0.37 | 0.42 |
+| Sad | 0.36 | 0.43 | 0.39 |
+| Angry | 0.51 | 0.33 | 0.40 |
+| Fearful | 0.00 | 0.00 | 0.00 |
+| Disgust | 0.38 | 0.18 | 0.24 |
+| Surprised | 0.33 | 0.47 | 0.39 |
+| **Weighted Avg** | **0.41** | **0.42** | **0.40** |
+
+> The CNN + BiLSTM architecture achieved the best performance, improving validation accuracy from **42% (LSTM) → 71% (BiLSTM) → 85% (CNN+BiLSTM)** by combining local feature extraction via 1D convolutions with sequential modeling via Bidirectional LSTM layers.
+
+---
+
 ## 🛠️ Tech Stack
 
 | Category | Libraries |
