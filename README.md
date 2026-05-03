@@ -1,0 +1,95 @@
+# 🎙️ Speech Emotion Recognition (SER)
+
+A deep learning project for recognizing human emotions from speech audio, built as part of the **CodeAlpha Machine Learning Internship**. Three architectures are implemented and compared: a vanilla LSTM, a Bidirectional LSTM, and a CNN + BiLSTM hybrid.
+
+---
+
+## 📁 Dataset
+
+- **[RAVDESS](https://www.kaggle.com/datasets/uwrfkaggler/ravdess-emotional-speech-audio)** — Ryerson Audio-Visual Database of Emotional Speech and Song
+- 8 emotion classes: `Neutral`, `Calm`, `Happy`, `Sad`, `Angry`, `Fearful`, `Disgust`, `Surprised`
+
+---
+
+## 🔧 Feature Extraction
+
+Each audio file is loaded with a 3-second window (0.5s offset) and the following features are extracted using **Librosa** and concatenated into a single feature vector:
+
+| Feature | Description |
+|---|---|
+| **MFCCs** (40) | Mel-Frequency Cepstral Coefficients — captures timbral texture |
+| **Chroma** (12) | Pitch class energy distribution |
+| **Mel Spectrogram** (128) | Frequency content over time on the mel scale |
+
+---
+
+## 🧠 Models
+
+### Model 1 — LSTM
+- Single-layer LSTM (hidden size: 128)
+- Trained with Adam optimizer (lr=0.001)
+- Early stopping (patience=30)
+
+### Model 2 — Bidirectional LSTM (BiLSTM)
+- 2-layer BiLSTM (hidden size: 128)
+- Processes sequence in both directions
+- Trained with Adam optimizer (lr=0.01)
+
+### Model 3 — CNN + BiLSTM
+- 1D Conv layer → BatchNorm → ReLU → MaxPool → Dropout
+- Feeds into 2-layer BiLSTM (hidden size: 128)
+- Dropout regularization (0.3) at multiple stages
+- Trained with Adam optimizer (lr=0.004)
+
+---
+
+## 📊 Evaluation
+
+All models are evaluated using:
+- Classification report (Precision, Recall, F1-Score per class)
+- Confusion matrix (heatmap visualization)
+- Training/Validation loss and accuracy curves
+- Side-by-side model comparison plots
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Libraries |
+|---|---|
+| Deep Learning | PyTorch |
+| Audio Processing | Librosa, Soundfile |
+| Data & Preprocessing | NumPy, Pandas, Scikit-learn |
+| Visualization | Matplotlib, Seaborn |
+| Dataset Download | opendatasets, kagglehub |
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Install dependencies
+pip install librosa tensorflow soundfile opendatasets torch scikit-learn matplotlib seaborn kagglehub
+
+# Run the notebook
+jupyter notebook CodeAlpha_EmotionRec.ipynb
+```
+
+> The notebook will automatically download the RAVDESS dataset from Kaggle. You'll need a Kaggle API key (`kaggle.json`) in your working directory.
+
+---
+
+## 📂 Project Structure
+
+```
+CodeAlpha_EmotionRecognition/
+│
+├── CodeAlpha_EmotionRec.ipynb   # Main notebook (EDA, preprocessing, training, evaluation)
+└── README.md
+```
+
+---
+
+## 🏷️ Topics
+
+`speech-emotion-recognition` `deep-learning` `lstm` `bilstm` `cnn` `pytorch` `librosa` `mfcc` `audio-classification` `ravdess`
